@@ -10,16 +10,16 @@
 
 from flask import Flask, request, render_template
 import boto3
-client = boto3.client('sns')
+# client = boto3.client('sns')
 
 
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='../webserver/staticTemplates')
 
 
 @app.route('/')
 def hello():
-    return "Hello World!"
+    return render_template('index.html')
 
 
 @app.route('/device-serial')
@@ -70,4 +70,5 @@ def login():
 
 if __name__ == '__main__':
     setup()
-    app.run(host='0.0.0.0')
+    # app.run(host='0.0.0.0')
+    app.run()
