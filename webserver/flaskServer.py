@@ -1,6 +1,3 @@
-
-
-
 # import boto3
 # client = boto3.client('sns')
 #
@@ -10,7 +7,7 @@
 from setupDB import UserDeviceDB
 from flask import Flask, request, render_template
 import boto3
-# client = boto3.client('sns')
+client = boto3.client('sns')
 
 
 
@@ -25,21 +22,22 @@ def hello():
 @app.route('/device-serial')
 def deviceSerial():
     id = request.args.get('id')
-    dbClient.update('d', [id, 'not-full'])
+    UserDeviceDB("flow.db").update('d', [id, 'not-full'])
     #call alex's stuff
     print(id)
     return {"Status Code" : 200}
 
 
 
-@app.route('/status', methods=['POST'])
+@app.route('/status')
 def updateStatus():
-    id = request.form.get('id')
+    id = request.args.get('id')
     # get email from database using alex's code
     # alex makes query to get topicArn associated with this specific id.
-    topicArn = "arn:aws:sns:us-east-1:396700303200:deviceStatus"
+    topicArn = UserDeviceDB("flow.db").update('t', [id])[0][0]
+    # topicArn = "arn:aws:sns:us-east-1:396700303200:deviceStatus"
 
-    response = client.publish(TopicArn = topicArn, Message="hello from aws", Subject = "aws sns")
+    response = client.publish(TopicArn = topicArn, Message="We recomend you empty your menstrual cup. You have reached 80 percent capacity.", Subject = "Flow Menstrual Cup Notification")
 
     return "Sent Status Update"
 
@@ -51,23 +49,17 @@ def login():
     id = request.form.get('id')
     phoneNum = request.form.get('number')
 
-    # call alex's code and see if email is valid and device id is valid
-
     response = client.create_topic(Name= topicName)
     topicArn = response.get('TopicArn')
     res = client.subscribe(TopicArn=topicArn, Protocol='email', Endpoint=email)
     # put data into database with alex's code
-
+    UserDeviceDB("flow.db").update('u', [email, id, topicArn])
     return {'Status Code' : 200}
-
-
-
-
 
 
 
 
 if __name__ == '__main__':
 
-    # app.run(host='0.0.0.0')
-    app.run()
+    app.run(host='0.0.0.0')
+    #app.run()
