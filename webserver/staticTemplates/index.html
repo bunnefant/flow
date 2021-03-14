@@ -1,26 +1,35 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
   <head>
-    <meta charset="utf-8">
-    <title>Login Mockup</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Sign In</title>
+    <link rel="stylesheet" href="../staticTemplates/login.css">
   </head>
   <body>
+    <div class="card-wrapper">
 
-    <h1 class="center">Sign Up</h1>
+            <div class="card">
 
-    <form name="signup_form" action="/login" method="POST">
+              <h1 class="center">Sign In</h1>
 
-      <label for="number">Phone Number</label>
-      <input type="number" name="number" class="field" required>
+              <form name="login_form">
 
-      <label for="email">Email</label>
-      <input type="email" name="email" class="field" required>
+                <label for="email">Email</label>
+                <input type="email" name="email" class="field" required>
 
-      <label for="id">Device Number</label>
-      <input type="number" name="id" class="field" required>
+                <label for="phone">Phone Number (12345678912)</label>
+                <input type="tel" id="phone" name="phone" pattern="[0-9]{11}">
 
-      <input type="submit" value="Sign Up" class="btn">
+                <label for="deviceID">Device ID</label>
+                <input type="number" name="number" class="field" min="0" max="999999" required>
 
-    </form>
-  </body>
+                <input type="submit" value="Log In" class="btn">
+
+              </form>
+
+            </div>
+</div>
+</body>
 </html>

@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap');
+
+.card-wrapper {
+  width: 100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1),rgba(0, 0, 0, 0)),url(../staticTemplates/loginBack.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+  background: #84ac88;
+  background-size: cover;
+  background-position: center;
+  font-family: 'Raleway', sans-serif;
+}
+
+.center{
+  color: #84ac88;
+font-size: 30px;
+padding: 25px;
+}
+
+.card{
+    width: 320px;
+    height: 420px;
+    background: white;
+    color: #8a8a8a;
+    border-radius: 40px;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    box-sizing: border-box;
+    padding: 10px 30px;
+}
+
+.card input{
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.card input[type="email"], input[type="tel"], input[type="number"]
+{
+  border: none;
+  border-bottom: 1px solid #8a8a8a;
+  background: transparent;
+  outline: none;
+  height: 40px;
+  color: #8a8a8a;
+  font-size: 16px;
+}
+
+.card input[type="submit"]
+{
+  border: none;
+  outline: none;
+  height: 40px;
+  background: #8a8a8a;
+  color: white;
+  font-size: 18px;
+  border-radius: 20px;
+  transition: background 0.5s;
+  font-family: 'Raleway', sans-serif;
+
+}
+
+.card input[type="submit"]:hover
+{
+  cursor: pointer;
+  background: #84ac88;
+}
+
+.card a
+{
+  text-decoration: none;
+  font-size: 12px;
+  line-height: 20px;
+  color: darkgrey;
+}
+
+.card a:hover
+{
+  color: ##84ac88;
+}
+
+h1{
+  margin: 0;
+  padding: 0 0 20px;
+  text-align: center;
+  font-size: 22px;
+}
