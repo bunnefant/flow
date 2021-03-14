@@ -83,7 +83,7 @@ class UserDeviceDB:
 
 	def get_topic_from_id(self, device_id):
 		query = """
-		SELECT 
+		SELECT
 			topic_arn
 		FROM
 			users
@@ -108,7 +108,7 @@ class UserDeviceDB:
 
 		return None
 
-	
+
 def main():
 	db = UserDeviceDB("test.db")
 	db.update("u", ["alex.hoerler@gatech.edu", "2554", "http:www.google.com"])
@@ -120,4 +120,3 @@ def main():
 
 if __name__ == "__main__":
 	main()
-

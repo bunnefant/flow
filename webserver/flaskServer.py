@@ -7,7 +7,7 @@
 # response = client.publish(TopicArn = "arn:aws:sns:us-east-1:396700303200:deviceStatus", Message="hello from aws", Subject = "aws sns")
 
 
-
+from setupDB import UserDeviceDB
 from flask import Flask, request, render_template
 import boto3
 # client = boto3.client('sns')
@@ -15,7 +15,7 @@ import boto3
 
 
 app = Flask(__name__, template_folder='../webserver/staticTemplates')
-
+dbClient = UserDeviceDB("flow.db")
 
 @app.route('/')
 def hello():
@@ -25,13 +25,12 @@ def hello():
 @app.route('/device-serial')
 def deviceSerial():
     id = request.args.get('id')
+    dbClient.update('d', [id, 'not-full'])
     #call alex's stuff
     print(id)
     return {"Status Code" : 200}
 
-def setup():
-    #run any database instanciation
-    print('setting up server')
+
 
 @app.route('/status', methods=['POST'])
 def updateStatus():
@@ -69,6 +68,6 @@ def login():
 
 
 if __name__ == '__main__':
-    setup()
+
     # app.run(host='0.0.0.0')
     app.run()
