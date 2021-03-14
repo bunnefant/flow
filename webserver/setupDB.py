@@ -81,6 +81,17 @@ class UserDeviceDB:
 		""".format(status, device_id)
 		self.execute_query(query)
 
+	def get_device_status(self, device_id):
+		query = """
+		SELECT
+			status
+		FROM
+			devices
+		WHERE
+			devices.device_id = {0}
+		""".format(device_id)
+		return self.execute_read_query(query)
+
 	def get_topic_from_id(self, device_id):
 		query = """
 		SELECT 
@@ -102,6 +113,9 @@ class UserDeviceDB:
 		# for updating device status
 		elif (flag[0] == "s"):
 			self.update_device_status(int(list[0]), list[1])
+		# for getting device status
+		elif (flag[0] == "g"):
+			return self.get_device_status(int(list[0]))
 		# for getting topic from id
 		elif (flag[0] == "t"):
 			return self.get_topic_from_id(int(list[0]))
@@ -114,8 +128,10 @@ def main():
 	db.update("u", ["alex.hoerler@gatech.edu", "2554", "http:www.google.com"])
 	db.update("d", ["2554", "not full"])
 	print(db.update("t", ["2554"]))
+	print(db.update("g", ["2554"]))
 	db.update("s", ["2554", "full"])
 	print(db.update("t", ["2554"]))
+	print(db.update("g", ["2554"]))
 
 
 if __name__ == "__main__":
